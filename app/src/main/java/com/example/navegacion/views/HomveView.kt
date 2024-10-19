@@ -49,7 +49,7 @@ fun HomeView(navController: NavController) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ContentHomeView(navController: NavController) {
-    val id = 123
+    val id = 8
     var opcional by remember { mutableStateOf("") }
     Column(
         modifier = Modifier.fillMaxSize(),

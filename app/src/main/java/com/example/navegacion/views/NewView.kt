@@ -1,11 +1,10 @@
 package com.example.navegacion.views
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -17,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.navegacion.components.MainButton
 import com.example.navegacion.components.MainIconButton
@@ -26,15 +24,14 @@ import com.example.navegacion.components.TitleBar
 import com.example.navegacion.components.TitleView
 
 @OptIn(ExperimentalMaterial3Api::class)
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun DetailView(navController: NavController, id: Int, opcional: String?) {
+fun NewView(navController: NavController, id: Int) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { TitleBar(name = "Detail view") },
+                title = { TitleBar(name = "New View") },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
-                    containerColor = Color.Blue
+                    containerColor = Color.Magenta
                 ),
                 navigationIcon = {
                     MainIconButton(icon = Icons.Default.ArrowBack) {
@@ -43,32 +40,27 @@ fun DetailView(navController: NavController, id: Int, opcional: String?) {
                 }
             )
         }
-    ) {
-        ContentDetailView(navController, id, opcional)
+    ) { paddingValues ->
+        ContentNewView(navController, id, paddingValues)
     }
 }
 
+
 @Composable
-fun ContentDetailView(navController: NavController, id: Int, opcional: String?) {
+fun ContentNewView(navController: NavController, id: Int, paddingValues: PaddingValues) {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(paddingValues),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        TitleView(name = "Detail View")
+        TitleView(name = "New View")
         Space()
-        TitleView(name = id.toString())
+        TitleView(name = "ID: $id")
         Space()
-        if (opcional == "") {
-            Spacer(modifier = Modifier.height(0.dp))
-        } else {
-            TitleView(name = opcional.orEmpty())
-        }
-        MainButton(name = "Go to New View", backColor = Color.Green, color = Color.White) {
-            navController.navigate("NewView/$id")
-        }
-        MainButton(name = "Return home", backColor = Color.Blue, color = Color.White) {
-            navController.popBackStack()
+        MainButton(name = "Go to Home", backColor = Color.Magenta, color = Color.White) {
+            navController.navigate("Home")
         }
     }
 }

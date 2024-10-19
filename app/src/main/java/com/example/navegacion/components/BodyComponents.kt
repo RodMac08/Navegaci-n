@@ -32,23 +32,3 @@ fun MainButton(name:String, backColor: Color, color: Color, onClick:() -> Unit){
         Text(text = name)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

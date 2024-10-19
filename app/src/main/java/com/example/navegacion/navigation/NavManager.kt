@@ -8,6 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.navegacion.views.DetailView
 import com.example.navegacion.views.HomeView
+import com.example.navegacion.views.NewView
 
 @Composable
 fun NavManager(){
@@ -23,6 +24,13 @@ fun NavManager(){
             val id = it.arguments?.getInt("id") ?: 0
             val opcional = it.arguments?.getString("opcional") ?: ""
             DetailView(navController, id, opcional)
+        }
+        // Nueva vista
+        composable("NewView/{id}", arguments = listOf(
+            navArgument("id") { type = NavType.IntType }
+        )){
+            val id = it.arguments?.getInt("id") ?: 0
+            NewView(navController, id)
         }
     }
 }
